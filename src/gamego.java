@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class gamego {
   // -Человеку предлагают 3 варианта, в консоли, либо ознакомиться с правилами и самой игрой, либо приглашение на игру
   // "начать игру" или "выход".
@@ -46,7 +50,33 @@ public class gamego {
   // Vadim - 1 командой в мэйне (история и правила игры то есть инфа о игре), посмотреть код "крестики нолики"
 
   // Vadim - класс Go в котором будет функционал игры
-  public static void main(String[] args) {
+  public static void main(String[] args) throws FileNotFoundException {
+    Scanner scanner = new Scanner(System.in);
+    while (true) {
+      System.out.println("Введите команду 2 чтобы начать игру");
+      System.out.println("-команда 1 ознакомится с игрой");
+      System.out.println("-команду 2 начать игру");
+      System.out.println("-команду 3 \"выход\"");
+      int command = scanner.nextInt();
+      scanner.nextLine();
+      while (true) {
+        switch (command) {
+          case 1:
+            File gofile = new File("res/go.txt");
+            Scanner scannerFile = new Scanner(gofile);
 
+            while (scanner.hasNextLine()) {
+              String line = scannerFile.nextLine();
+              System.out.println(line);
+            }
+            scannerFile.close();
+            break;
+          case 2:
+            break;
+          case 3:
+            return;
+        }
+      }
+    }
   }
 }
