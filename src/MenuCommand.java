@@ -51,17 +51,17 @@ public enum MenuCommand {
             File gofile = new File("res/go.txt");
             Scanner scannerFile = new Scanner(gofile);
 
-            while (scanner.hasNextLine()) {
+            while (scannerFile.hasNextLine()) {
               String line = scannerFile.nextLine();
               System.out.println(line);
             }
             scannerFile.close();
             break;
 
-
           case 2:
             System.out.println("Вы выбрали: " + START.string);
-
+           // gamego.start();
+            selectedCommand = START;
             break;
 
           case 3:

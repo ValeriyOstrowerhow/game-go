@@ -34,16 +34,16 @@ public class gamego {
   // добро пожаловать в игру жилаем вам удачной и запоминающееся партии!
   // Но прежде чем вы начнёте игру с вашим соперником определитесь кто какими камнями будет играть
 
-  //    a     b     c     d     e     f     g     h     j
+  //    a     b     c     d     e     f     g     h     i
   // 1  +-----+-----+-----+-----+-----+-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
   // 2  +-----+-----+-----+-----+-----+-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
-  // 3  +-----+-----+-----+-----+-----+-----+-----+-----+
+  // 3  +-----+-----+-----+-----0-----+-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
-  // 4  +-----+-----+-----+-----+-----+-----+-----+-----+
+  // 4  +-----+-----+-----0-----p-----0-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
-  // 5  +-----+-----+-----+-----+-----+-----+-----+-----+
+  // 5  +-----+-----+-----+-----0-----+-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
   // 6  +-----+-----+-----+-----+-----+-----+-----+-----+
   //    |     |     |     |     |     |     |     |     |
@@ -101,34 +101,6 @@ public class gamego {
 
   // Vadim - класс Go в котором будет функционал игры
   public static void main(String[] args) throws FileNotFoundException {
-    Scanner scanner = new Scanner(System.in);
-    while (true) {
-      System.out.println("Введите команду 2 чтобы начать игру");
-      System.out.println("-команда 1 ознакомится с игрой");
-      System.out.println("-команду 2 начать игру");
-      System.out.println("-команду 3 \"выход\"");
-      int command = scanner.nextInt();
-        switch (command) {
-          case 1:
-            File gofile = new File("res/go.txt");
-            Scanner scannerFile = new Scanner(gofile);
-
-            while (scanner.hasNextLine()) {
-              String line = scannerFile.nextLine();
-              System.out.println(line);
-            }
-            scannerFile.close();
-            break;
-          case 2:
-            System.out.println("добро пожаловать в игру жилаем вам удачной и запоминающееся партии!");
-            System.out.println("Но прежде чем вы начнёте игру с вашим соперником определитесь кто какими камнями будет играть");
-
-
-            break;
-          case 3:
-            return;
-        }
-
-    }
+    MenuCommand.commandList();
   }
 }
