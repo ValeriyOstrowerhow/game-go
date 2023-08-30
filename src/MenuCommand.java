@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public enum MenuCommand {
@@ -30,7 +32,7 @@ public enum MenuCommand {
     }
   }
 
-  public static MenuCommand commandList() {
+  public static MenuCommand commandList() throws FileNotFoundException {
 
     Scanner scanner = new Scanner(System.in);
     boolean isRun = true;
@@ -46,14 +48,20 @@ public enum MenuCommand {
         switch (command) {
           case 1:
             System.out.println("Вы выбрали: " + READ.string);
-          //  gamego.read();
-            selectedCommand = READ;
+            File gofile = new File("res/go.txt");
+            Scanner scannerFile = new Scanner(gofile);
+
+            while (scanner.hasNextLine()) {
+              String line = scannerFile.nextLine();
+              System.out.println(line);
+            }
+            scannerFile.close();
             break;
+
 
           case 2:
             System.out.println("Вы выбрали: " + START.string);
-           // gamego.start();
-            selectedCommand = START;
+
             break;
 
           case 3:
