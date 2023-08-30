@@ -5,15 +5,15 @@ public enum MenuCommand {
   READ(1, "Правила игры"),
   START (2, "Старт игры"),
   EXIT(3, "Выйти из игры"),
-  UNEXPECTED(10, "");
+  UNEXPECTED(0, "");
 
 
   private final int num;
-  private final String s;
+  private final String string;
 
-  MenuCommand(int num, String s) {
+  MenuCommand(int num, String string) {
     this.num = num;
-    this.s = s;
+    this.string = string;
   }
 
 
@@ -25,7 +25,7 @@ public enum MenuCommand {
 
     for (MenuCommand command : values()) {
       if (command != UNEXPECTED) {
-        System.out.println(command.num + ". " + command.s);
+        System.out.println(command.num + ". " + command.string);
       }
     }
   }
@@ -45,13 +45,13 @@ public enum MenuCommand {
 
         switch (command) {
           case 1:
-            System.out.println("Вы выбрали: " + READ.s);
+            System.out.println("Вы выбрали: " + READ.string);
           //  gamego.read();
             selectedCommand = READ;
             break;
 
           case 2:
-            System.out.println("Вы выбрали: " + START.s);
+            System.out.println("Вы выбрали: " + START.string);
            // gamego.start();
             selectedCommand = START;
             break;
