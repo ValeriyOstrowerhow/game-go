@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public enum MenuCommand {
 
-  READ(1, "Правила игры"),
+  READ(1, "Правила и история игры"),
   START (2, "Старт игры"),
   EXIT(3, "Выйти из игры"),
   UNEXPECTED(0, "");
@@ -39,15 +39,13 @@ public enum MenuCommand {
     MenuCommand selectedCommand = null;
     while (isRun) {
       menu();
-      System.out.println("Введите номер пункта меню: ");
+      System.out.print("Введите номер пункта меню: ");
       if (scanner.hasNextInt()) {
         int command = scanner.nextInt();
-        scanner.nextLine();
         System.out.println("------------------------------------------------------");
 
         switch (command) {
           case 1:
-            System.out.println("Вы выбрали: " + READ.string);
             File gofile = new File("res/go.txt");
             Scanner scannerFile = new Scanner(gofile);
 
@@ -56,16 +54,23 @@ public enum MenuCommand {
               System.out.println(line);
             }
             scannerFile.close();
+            selectedCommand = READ;
             break;
 
           case 2:
-            System.out.println("Вы выбрали: " + START.string);
-           // gamego.start();
+            System.out.println("                     Добро пожаловать в игру жилаем вам удачной и запоминающееся партии!");
+            System.out.println("Но должны предупредить! Прежде чем вы начнёте игру с вашим соперником определитесь кто какими камнями будет играть");
+            System.out.println();
+
+            game.fieldCallMethod();
+            game.addingStonesToTheField();
+
+
             selectedCommand = START;
             break;
 
           case 3:
-            System.out.println("До скорой встречи");
+            System.out.println("Спасибо за игру!");
             selectedCommand = EXIT;
             isRun = false;
             break;
