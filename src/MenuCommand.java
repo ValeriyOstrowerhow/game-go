@@ -22,7 +22,6 @@ public enum MenuCommand {
   public static void menu() {
     System.out.println();
     System.out.println(" ═-═-═-═-═-═ Добро пожаловать в Игру Го ═-═-═-═-═-═ ");
-
     System.out.println(" ===================  〚 МЕНЮ 〛 ===================\n");
 
     for (MenuCommand command : values()) {
@@ -33,7 +32,6 @@ public enum MenuCommand {
   }
 
   public static MenuCommand commandList() throws FileNotFoundException {
-
     Scanner scanner = new Scanner(System.in);
     boolean isRun = true;
     MenuCommand selectedCommand = null;
@@ -42,6 +40,7 @@ public enum MenuCommand {
       System.out.print("Введите номер пункта меню: ");
       if (scanner.hasNextInt()) {
         int command = scanner.nextInt();
+        scanner.nextLine();
         System.out.println("------------------------------------------------------");
 
         switch (command) {
@@ -58,13 +57,14 @@ public enum MenuCommand {
             break;
 
           case 2:
-            System.out.println("                     Добро пожаловать в игру жилаем вам удачной и запоминающееся партии!");
+            System.out.println("Добро пожаловать в игру жилаем вам удачной и запоминающееся партии!");
             System.out.println("Но должны предупредить! Прежде чем вы начнёте игру с вашим соперником определитесь кто какими камнями будет играть");
             System.out.println();
 
-            game.fieldCallMethod();
-            game.addingStonesToTheField();
-
+            game.CreatingTheInitialField();
+            for (int i = 0; i < 10; i++) {
+              game.addingStonesToTheField(scanner);
+            }
 
             selectedCommand = START;
             break;
@@ -78,7 +78,6 @@ public enum MenuCommand {
           default:
             selectedCommand = UNEXPECTED;
             break;
-
         }
 
       } else {

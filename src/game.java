@@ -1,6 +1,10 @@
+import java.util.Scanner;
+
 public class game {
   private static String[][] field = new String[10][10];
-  public static void fieldCallMethod() {
+  private static final String SEP = ",";
+
+  public static void CreatingTheInitialField() {
     for (int i = 1; i < 10; i++) {
       field[0][0] = "";
       field[0][1] = "a";
@@ -27,7 +31,62 @@ public class game {
         field[i][j] = "+";
       }
     }
+    game.PrintingTheField();
+  }
 
+  public static Object addingStonesToTheField(Scanner scanner) {
+    System.out.println();
+    System.out.print("Введите поле на которое хотите поставить камень: ");
+
+    while (scanner.hasNext()) {
+      String place = scanner.nextLine().toLowerCase();
+      char n = place.charAt(0);
+      if (n > 58) {
+        String letter = String.valueOf(place.charAt(0));
+        String number = String.valueOf(place.charAt(1));
+        for (int i = 1; i < 10; i++) {
+          for (int j = 1; j < 10; j++) {
+            if (field[i][0].equals(number) && field[0][j].equalsIgnoreCase(letter)) {
+              if (field[i][j] != "W") {
+                field[i][j] = "W";
+                System.out.println();
+                game.PrintingTheField();
+                return null;
+              } else {
+                System.out.print(
+                    "Введённое вами поле, \"" + place
+                        + "\" уже занято введите другое место на поле: ");
+                break;
+              }
+            }
+          }
+        }
+      } else {
+        String letter = String.valueOf(place.charAt(1));
+        String number = String.valueOf(place.charAt(0));
+        for (int i = 1; i < 10; i++) {
+          for (int j = 1; j < 10; j++) {
+            if (field[i][0].equals(number) && field[0][j].equalsIgnoreCase(letter)) {
+              if (field[i][j] != "W") {
+                field[i][j] = "W";
+                System.out.println();
+                game.PrintingTheField();
+                return null;
+              } else {
+                System.out.print(
+                    "Введённое вами поле, \"" + place
+                        + "\" уже занято введите, другое место на поле: ");
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+    return null;
+  }
+
+  private static void PrintingTheField() {
     System.out.print(field[0][0] + "    ");
     for (int j = 1; j < 10; j++) {
       System.out.print(field[0][j] + "     ");
@@ -42,13 +101,5 @@ public class game {
       System.out.println();
       System.out.println("                                                    ");
     }
-  }
-
-  public static void addingStonesToTheField() {
-    System.out.println();
-    System.out.print("Введите поле на которое хотите поставить камень: ");
-    // для начала отталкиваемся от того что человек сначала вводит маленькую букву а потом цифру
-
-
   }
 }
