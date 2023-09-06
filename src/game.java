@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class game {
   private static String[][] field = new String[10][10];
-  private static final String SEP = ",";
+  private static byte PlayerNumber = 0;
+  protected static int countpass = 0;
 
   public static void CreatingTheInitialField() {
     for (int i = 1; i < 10; i++) {
@@ -34,8 +35,22 @@ public class game {
     game.PrintingTheField();
   }
 
+  // Todo: добавить допметод для "addingStonesToTheField", чтобы уменьшить код и учесть некоректный ввод
   public static Object addingStonesToTheField(Scanner scanner) {
-    System.out.println();
+    nextPlayer();
+    System.out.println("Сейчас ход " + (1 == PlayerNumber ? "чёрных!" : "белых!"));
+    System.out.print("Введите \"+\" чтобы сделать пасс и \"-\" чтобы его не делать: ");
+
+    String pass = scanner.nextLine();
+    String plus = "+";
+    String minus = "-";
+    if (pass.equals(plus)) {
+      countpass++;
+      game.PrintingTheField();
+      return null;
+    } else if (pass.equals(minus)) {
+      countpass = 0;
+    }
     System.out.print("Введите поле на которое хотите поставить камень: ");
 
     while (scanner.hasNext()) {
@@ -47,15 +62,12 @@ public class game {
         for (int i = 1; i < 10; i++) {
           for (int j = 1; j < 10; j++) {
             if (field[i][0].equals(number) && field[0][j].equalsIgnoreCase(letter)) {
-              if (field[i][j] != "W") {
-                field[i][j] = "W";
-                System.out.println();
+              if (field[i][j] != "W" && field[i][j] != "B") {
+                field[i][j] = (1 == PlayerNumber ? "B" : "W");
                 game.PrintingTheField();
                 return null;
               } else {
-                System.out.print(
-                    "Введённое вами поле, \"" + place
-                        + "\" уже занято введите другое место на поле: ");
+                System.out.print("Введённое вами поле, \"" + place + "\" уже занято введите другое место на поле: ");
                 break;
               }
             }
@@ -67,15 +79,12 @@ public class game {
         for (int i = 1; i < 10; i++) {
           for (int j = 1; j < 10; j++) {
             if (field[i][0].equals(number) && field[0][j].equalsIgnoreCase(letter)) {
-              if (field[i][j] != "W") {
-                field[i][j] = "W";
-                System.out.println();
+              if (field[i][j] != "W" && field[i][j] != "B") {
+                field[i][j] = (1 == PlayerNumber ? "B" : "W");
                 game.PrintingTheField();
                 return null;
               } else {
-                System.out.print(
-                    "Введённое вами поле, \"" + place
-                        + "\" уже занято введите, другое место на поле: ");
+                System.out.print("Введённое вами поле, \"" + place + "\" уже занято введите другое место на поле: ");
                 break;
               }
             }
@@ -86,7 +95,9 @@ public class game {
     return null;
   }
 
+  // Todo: улучшить дизайн поля
   private static void PrintingTheField() {
+    System.out.println();
     System.out.print(field[0][0] + "    ");
     for (int j = 1; j < 10; j++) {
       System.out.print(field[0][j] + "     ");
@@ -101,5 +112,9 @@ public class game {
       System.out.println();
       System.out.println("                                                    ");
     }
+  }
+
+  private static void nextPlayer() {
+    PlayerNumber = (byte) (1 == PlayerNumber ? 2 : 1);
   }
 }

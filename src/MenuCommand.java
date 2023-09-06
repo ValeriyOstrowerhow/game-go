@@ -62,15 +62,18 @@ public enum MenuCommand {
             System.out.println();
 
             game.CreatingTheInitialField();
-            for (int i = 0; i < 10; i++) {
+            while (game.countpass < 2) {
               game.addingStonesToTheField(scanner);
+              if (game.countpass == 2) {
+                System.out.println("--------------Удачи в следующей игре за игру!--------------");
+              }
             }
 
             selectedCommand = START;
             break;
 
           case 3:
-            System.out.println("Спасибо за игру!");
+            System.out.println("До скорой встречи и спасибо за игру!");
             selectedCommand = EXIT;
             isRun = false;
             break;
