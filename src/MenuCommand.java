@@ -20,8 +20,6 @@ public enum MenuCommand {
 
 
   public static void menu() {
-    System.out.println();
-    System.out.println(" ═-═-═-═-═-═ Добро пожаловать в Игру Го ═-═-═-═-═-═ ");
     System.out.println(" ===================  〚 МЕНЮ 〛 ===================\n");
 
     for (MenuCommand command : values()) {
@@ -35,6 +33,8 @@ public enum MenuCommand {
     Scanner scanner = new Scanner(System.in);
     boolean isRun = true;
     MenuCommand selectedCommand = null;
+    System.out.println();
+    System.out.println(" ═-═-═-═-═-═ Добро пожаловать в Игру Го ═-═-═-═-═-═ ");
     while (isRun) {
       menu();
       System.out.print("Введите номер пункта меню: ");
@@ -59,13 +59,13 @@ public enum MenuCommand {
           case 2:
             System.out.println("Добро пожаловать в игру жилаем вам удачной и запоминающееся партии!");
             System.out.println("Но должны предупредить! Прежде чем вы начнёте игру с вашим соперником определитесь кто какими камнями будет играть");
-            System.out.println();
 
             game.CreatingTheInitialField();
             while (game.countpass < 2) {
               game.addingStonesToTheField(scanner);
               if (game.countpass == 2) {
                 System.out.println("--------------Удачи в следующей игре за игру!--------------");
+                System.out.println();
               }
             }
 

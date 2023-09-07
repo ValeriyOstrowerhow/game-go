@@ -39,18 +39,25 @@ public class game {
   public static Object addingStonesToTheField(Scanner scanner) {
     nextPlayer();
     System.out.println("Сейчас ход " + (1 == PlayerNumber ? "чёрных!" : "белых!"));
-    System.out.print("Введите \"+\" чтобы сделать пасс и \"-\" чтобы его не делать: ");
 
-    String pass = scanner.nextLine();
-    String plus = "+";
-    String minus = "-";
-    if (pass.equals(plus)) {
-      countpass++;
-      game.PrintingTheField();
-      return null;
-    } else if (pass.equals(minus)) {
-      countpass = 0;
+    while (true) {
+      System.out.print("Введите \"+\" чтобы сделать пасс и \"-\" чтобы его не делать: ");
+      String pass = scanner.nextLine();
+      String plus = "+";
+      String minus = "-";
+
+      if (pass.equals(plus)) {
+        countpass++;
+        game.PrintingTheField();
+        return null;
+      } else if (pass.equals(minus)) {
+        countpass = 0;
+        break;
+      } else {
+        System.out.println("Вы ввели некоректное значение сделайте ввод ещё раз!");
+      }
     }
+
     System.out.print("Введите поле на которое хотите поставить камень: ");
 
     while (scanner.hasNext()) {
