@@ -62,10 +62,15 @@ public enum MenuCommand {
 
             game.CreatingTheInitialField();
             while (game.countpass < 2) {
-              game.addingStonesToTheField(scanner);
+              boolean isRun2 = true;
+              while (isRun2) {
+                isRun2 = game.addingStonesToTheField(scanner, isRun2); // Передайте isRun2 в метод addingStonesToTheField
+              }
               if (game.countpass == 2) {
                 System.out.println("--------------Удачи в следующей игре за игру!--------------");
                 System.out.println();
+                game.countpass = 0;
+                break; // Выход из цикла while (game.countpass < 2)
               }
             }
 
