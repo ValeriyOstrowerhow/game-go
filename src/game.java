@@ -105,6 +105,7 @@ public class game {
         if (field[i][0].equals(number) && field[0][j].equalsIgnoreCase(letter)) {
           if (field[i][j] != "W" && field[i][j] != "B") {
             field[i][j] = (1 == PlayerNumber ? "B" : "W");
+            game.AMethodThatLooksAtWhetherThereAreStonesNearbyAndWhatTheyAreAndThenReplacesOrDoesNotReplaceTheStoneWithAPlus();
             game.PrintingTheField();
             isRun2 = false;
             return isRun2;
@@ -149,5 +150,145 @@ public class game {
       plaseinfield[1] = " ";
     }
     return plaseinfield;
+  }
+
+  private static void AMethodThatLooksAtWhetherThereAreStonesNearbyAndWhatTheyAreAndThenReplacesOrDoesNotReplaceTheStoneWithAPlus() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    for (int i = 1; i < 2; i++) {
+      for (int j = 2; j < 9; j++) {
+        if (field[i][j] == "W") {
+          if (field[i + 1][j] == "B" && field[i][j - 1] == "B" && field[i][j + 1] == "B") {
+            field[i][j] = "+";
+          }
+        } else if (field[i][j] == "B") {
+          if (field[i + 1][j] == "W" && field[i][j - 1] == "W" && field[i][j + 1] == "W") {
+            field[i][j] = "+";
+          }
+        }
+      }
+    }
+
+    for (int i = 9; i < 10; i++) {
+      for (int j = 2; j < 9; j++) {
+        if (field[i][j] == "W") {
+          if (field[i - 1][j] == "B" && field[i][j - 1] == "B" && field[i][j + 1] == "B") {
+            field[i][j] = "+";
+          }
+        } else if (field[i][j] == "B") {
+          if (field[i - 1][j] == "W" && field[i][j - 1] == "W" && field[i][j + 1] == "W") {
+            field[i][j] = "+";
+          }
+        }
+      }
+    }
+
+    for (int i = 2; i < 9; i++) {
+      for (int j = 1; j < 2; j++) {
+        if (field[i][j] == "W") {
+          if (field[i + 1][j] == "B" && field[i - 1][j] == "B" && field[i][j + 1] == "B") {
+            field[i][j] = "+";
+          }
+        } else if (field[i][j] == "B") {
+          if (field[i + 1][j] == "W" && field[i - 1][j] == "W" && field[i][j + 1] == "W") {
+            field[i][j] = "+";
+          }
+        }
+      }
+    }
+
+    for (int i = 2; i < 9; i++) {
+      for (int j = 9; j < 10; j++) {
+        if (field[i][j] == "W") {
+          if (field[i + 1][j] == "B" && field[i - 1][j] == "B" && field[i][j - 1] == "B") {
+            field[i][j] = "+";
+          }
+        } else if (field[i][j] == "B") {
+          if (field[i + 1][j] == "W" && field[i - 1][j] == "W" && field[i][j - 1] == "W") {
+            field[i][j] = "+";
+          }
+        }
+      }
+    }
+
+
+
+
+    if (field[1][1] == "W") {
+      if (field[1 + 1][1] == "B" && field[1][1 + 1] == "B") {
+        field[1][1] = "+";
+      }
+    } else if (field[1][1] == "B") {
+      if (field[1 + 1][1] == "W" && field[1][1 + 1] == "W") {
+        field[1][1] = "+";
+      }
+    }
+
+    if (field[1][9] == "W") {
+      if (field[1 + 1][9] == "B" && field[1][9 - 1] == "B") {
+        field[1][9] = "+";
+      }
+    } else if (field[1][9] == "B") {
+      if (field[1 + 1][9] == "W" && field[1][9 - 1] == "W") {
+        field[1][9] = "+";
+      }
+    }
+
+    if (field[9][9] == "W") {
+      if (field[9 - 1][9] == "B" && field[9][9 - 1] == "B") {
+        field[9][9] = "+";
+      }
+    } else if (field[9][9] == "B") {
+      if (field[9 - 1][9] == "W" && field[9][9 - 1] == "W") {
+        field[9][9] = "+";
+      }
+    }
+
+    if (field[9][1] == "W") {
+      if (field[9 - 1][1] == "B" && field[9][1 + 1] == "B") {
+        field[9][1] = "+";
+      }
+    } else if (field[9][1] == "B") {
+      if (field[9 - 1][1] == "W" && field[9][1 + 1] == "W") {
+        field[9][1] = "+";
+      }
+    }
+
+
+
+
+
+    for (int i = 2; i < 9; i++) {
+      for (int j = 2; j < 9; j++) {
+        if (field[i][j] == "W") {
+          if (field[i - 1][j] == "B" && field[i + 1][j] == "B" && field[i][j - 1] == "B" && field[i][j + 1] == "B") {
+            field[i][j] = "+";
+          }
+        } else if (field[i][j] == "B") {
+          if (field[i - 1][j] == "W" && field[i + 1][j] == "W" && field[i][j - 1] == "W" && field[i][j + 1] == "W") {
+            field[i][j] = "+";
+          }
+        }
+      }
+    }
+
+
+
+
   }
 }
